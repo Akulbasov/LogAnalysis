@@ -1,0 +1,91 @@
+version: "3"
+
+services:
+  example-producer:
+      image: exampleproducer/exampleproducer:v0.1-SNAPSHOT
+      ports:
+        - "8084:8084"
+      tty: true
+      depends_on:
+        - kafka
+      networks:
+        - log-analysis
+  nimbus:
+      image: storm
+      container_name: nimbus
+      command: storm nimbus
+      depends_on:
+        - zookeeper
+      links:
+        - zookeeper
+      restart: always
+      ports:
+        - 6627:6627
+      logging:
+          driver: none
+
+  supervisor:
+    image: storm
+    container_name: supervisor
+    command: storm supervisor
+    depends_on:
+      - nimbus
+      - zookeeper
+    links:
+      - nimbus
+      - zookeeper
+    networks:
+          - log-analysis
+    restart: always
+    logging:
+        driver: none
+
+
+  rest-proxy:
+    image: confluent/rest-proxy
+    depends_on:
+      - zookeeper
+      - kafka
+    ports:
+      - "8082:8082"
+    environment:
+      RP_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      RP_SCHEMA_REGISTRY_URL: "http://localhost:8081"
+    networks:
+      - log-analysis
+    logging:
+        driver: none
+
+
+  zookeeper:
+      image: confluentinc/cp-zookeeper
+      ports:
+        - "2181:2181"
+      environment:
+        ZOOKEEPER_CLIENT_PORT: 2181
+        ZOOKEEPER_TICK_TIME: 2000
+      networks:
+        - log-analysis
+      logging:
+          driver: none
+
+  kafka:
+      image: confluentinc/cp-kafka
+      depends_on:
+        - zookeeper
+      ports:
+        - "9093:9093"
+      environment:
+        KAFKA_BROKER_ID: 0
+        KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+        KAFKA_ADVERTISED_LISTENERS:
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9093
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      networks:
+        - log-analysis
+      logging:
+          driver: none
+
+
+networks:
+  log-analysis:

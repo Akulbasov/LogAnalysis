@@ -1,0 +1,17 @@
+clean
+compile
+clean
+compile
+test:console
+clean
+compile
+test:console
+clean
+compile
+docker
+clean
+compile
+docker
+clean
+compile
+docker

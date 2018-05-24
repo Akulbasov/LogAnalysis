@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: monix-execution
+Implementation-Version: 2.3.0
+Specification-Vendor: io.monix
+Specification-Title: monix-execution
+Implementation-Vendor-Id: io.monix
+Specification-Version: 2.3.0
+Implementation-Vendor: io.monix
+

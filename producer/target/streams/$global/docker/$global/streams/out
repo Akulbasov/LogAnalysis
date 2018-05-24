@@ -1,0 +1,37 @@
+[0m[[0mdebug[0m] [0mBuilding Dockerfile:[0m
+[0m[[0mdebug[0m] [0mFROM java[0m
+[0m[[0mdebug[0m] [0mADD 0/exampleproducer-assembly-0.1-SNAPSHOT.jar /app/exampleproducer-assembly-0.1-SNAPSHOT.jar[0m
+[0m[[0mdebug[0m] [0mCOPY 1/dockerscripts /app/[0m
+[0m[[0mdebug[0m] [0mRUN ["chmod", "+x", "\/app\/entrypoint.sh"][0m
+[0m[[0mdebug[0m] [0mRUN ["chmod", "+x", "\/app\/wait-for-it.sh"][0m
+[0m[[0mdebug[0m] [0mENTRYPOINT ["\/app\/entrypoint.sh"][0m
+[0m[[0mdebug[0m] [0mCMD ["exampleproducer", "0.1-SNAPSHOT"][0m
+[0m[[0mdebug[0m] [0mPreparing stage directory '/home/akulbasov/Downloads/IdeaProjects/LogAnalysis/producer/target/docker'[0m
+[0m[[0mdebug[0m] [0mRunning command: 'docker build --no-cache=false --rm=true --pull=false .' in '/home/akulbasov/Downloads/IdeaProjects/LogAnalysis/producer/target/docker'[0m
+[0m[[0minfo[0m] [0mSending build context to Docker daemon  24.37MB[0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0mStep 1/7 : FROM java[0m
+[0m[[0minfo[0m] [0m ---> d23bdf5b1b1b[0m
+[0m[[0minfo[0m] [0mStep 2/7 : ADD 0/exampleproducer-assembly-0.1-SNAPSHOT.jar /app/exampleproducer-assembly-0.1-SNAPSHOT.jar[0m
+[0m[[0minfo[0m] [0m ---> f6dec4365b3e[0m
+[0m[[0minfo[0m] [0mStep 3/7 : COPY 1/dockerscripts /app/[0m
+[0m[[0minfo[0m] [0m ---> da22bbba03bb[0m
+[0m[[0minfo[0m] [0mStep 4/7 : RUN ["chmod", "+x", "\/app\/entrypoint.sh"][0m
+[0m[[0minfo[0m] [0m ---> Running in 8bd8c07a47fb[0m
+[0m[[0minfo[0m] [0mRemoving intermediate container 8bd8c07a47fb[0m
+[0m[[0minfo[0m] [0m ---> 0d4bd2658718[0m
+[0m[[0minfo[0m] [0mStep 5/7 : RUN ["chmod", "+x", "\/app\/wait-for-it.sh"][0m
+[0m[[0minfo[0m] [0m ---> Running in 59a67ff2fefa[0m
+[0m[[0minfo[0m] [0mRemoving intermediate container 59a67ff2fefa[0m
+[0m[[0minfo[0m] [0m ---> 13d41f14be37[0m
+[0m[[0minfo[0m] [0mStep 6/7 : ENTRYPOINT ["\/app\/entrypoint.sh"][0m
+[0m[[0minfo[0m] [0m ---> Running in 55d425521fd9[0m
+[0m[[0minfo[0m] [0mRemoving intermediate container 55d425521fd9[0m
+[0m[[0minfo[0m] [0m ---> 24a6f4680297[0m
+[0m[[0minfo[0m] [0mStep 7/7 : CMD ["exampleproducer", "0.1-SNAPSHOT"][0m
+[0m[[0minfo[0m] [0m ---> Running in 067a81f485a3[0m
+[0m[[0minfo[0m] [0mRemoving intermediate container 067a81f485a3[0m
+[0m[[0minfo[0m] [0m ---> 6799af7e3d4e[0m
+[0m[[0minfo[0m] [0mSuccessfully built 6799af7e3d4e[0m
+[0m[[0minfo[0m] [0mTagging image 6799af7e3d4e with name: exampleproducer:latest[0m
+[0m[[0minfo[0m] [0mTagging image 6799af7e3d4e with name: exampleproducer/exampleproducer:v0.1-SNAPSHOT[0m
